@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
+    'accounts',
+    'listings',
+    'realtors',
+    'contacts',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +82,11 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'btredb',
+        'USER': 'postgres',
+        'PASSWORD': 'shadowsfall',
+        'HOST': 'localhost'
     }
 }
 
@@ -123,3 +132,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR, 'btre/static'
 ]
+MEDIA_ROOT = (BASE_DIR / 'media')
+MEDIA_URL = '/media/'
+
+# message
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+
+# email config
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = '#'
+# EMAIL_HOST_PASSWORD = '#'
+# EMAIL_USE_TLS = True
